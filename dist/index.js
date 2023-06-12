@@ -7,7 +7,7 @@ const express_1 = __importDefault(require("express"));
 const db_1 = __importDefault(require("./routes/db/db"));
 const kube_1 = __importDefault(require("./routes/kube/kube"));
 const body_parser_1 = __importDefault(require("body-parser"));
-const PORT = 3000;
+const PORT = 3001;
 const app = (0, express_1.default)();
 ///Usage Of modules
 // app.use(express.json())

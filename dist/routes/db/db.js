@@ -115,7 +115,7 @@ dbRest.post('/api/create/labtype', body_parser_1.default.json(), (req, res) => {
     }));
     res.send(200).json(`Created Lab: ${title} successfully`);
 });
-dbRest.delete('/api/create/labtype', (res, req) => {
+dbRest.delete('/api/create/labtype', (req, res) => {
     const { labid } = req.body;
     deleteLab(labid).then(() => __awaiter(void 0, void 0, void 0, function* () {
         yield prisma.$disconnect();
@@ -127,7 +127,7 @@ dbRest.delete('/api/create/labtype', (res, req) => {
     }));
     res.send(200).json(`Created Lab: ${labid} successfully`);
 });
-dbRest.put('/api/create/labtype', (res, req) => {
+dbRest.put('/api/create/labtype', (req, res) => {
     const { title, description, type } = labTypeValidator_1.default.parse(req.body);
     updateLab(title, description, type).then(() => __awaiter(void 0, void 0, void 0, function* () {
         yield prisma.$disconnect();

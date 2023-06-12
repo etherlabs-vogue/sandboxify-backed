@@ -10,18 +10,27 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Lab {
+  id          Int          @id @default(autoincrement())
+  title       String       @unique
+  description String
+  deployments Deployment[]
+  image       String
+  category    Category     @relation(fields: [categoryId], references: [id])
+  categoryId  Int
+}
 
-model LabType {
-  id          Int      @id @default(autoincrement())
-  title String @unique
-  description           String
-  type String
+model Category {
+  id   Int   @id @default(autoincrement())
+  labs Lab[]
 }
 
 model Deployment {
-  id             Int      @id @default(autoincrement())
-  namespaceName String   @unique
+  id            Int    @id @default(autoincrement())
+  namespaceName String @unique
   app           String
   accessKey     String
   secretKey     String
+  Lab           Lab?   @relation(fields: [labId], references: [id])
+  labId         Int?
 }

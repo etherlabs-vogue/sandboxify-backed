@@ -49,7 +49,7 @@ function executeKubectl(command) {
         });
     });
 }
-kubeRest.post('/api/deployments/objectstorage', (req, res) => {
+kubeRest.post('/api/deployments/objectStorage', (req, res) => {
     try {
         const { namespaceName, labId, app, accessKey, secretKey } = deploymentValidator_1.default.parse(req.body);
         const source = fs.readFileSync(minioTemplateFile, 'utf-8');
@@ -67,6 +67,7 @@ kubeRest.post('/api/deployments/objectstorage', (req, res) => {
         executeKubectl('kubectl apply -f ./tempfile.yaml')
             .then(() => {
             (0, db_1.createDeployment)(namespaceName, app, accessKey, secretKey);
+            //Add Remove file
             res.status(200).json('Deployed Lab');
         })
             .catch((err) => {
